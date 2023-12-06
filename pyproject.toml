@@ -1,0 +1,82 @@
+[tool.poetry]
+name = "collectfast"
+version = "2.2.0"
+description = "A Faster Collectstatic"
+license = "MIT"
+authors = ["Anton Agestam <git@antonagestam.se>"]
+readme = "README.md"
+repository = "https://github.com/antonagestam/collectfast"
+classifiers = [
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Framework :: Django",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = ">= 3.7"
+django = ">= 2.2"
+django-storages = ">= 1.6"
+typing-extensions = "*"
+
+[tool.poetry.group.dev.dependencies]
+mock = "*"
+coveralls = "*"
+boto3 = "*"
+google-cloud-storage = "*"
+pytest = "*"
+pytest-django = "*"
+pytest-cov = "*"
+mypy = "*"
+django-stubs = "*"
+ruff = "^0.1.7"
+black = "*"
+
+[tool.mypy]
+python_version = 3.6
+show_error_codes = true
+pretty = true
+
+no_implicit_reexport = true
+no_implicit_optional = true
+strict_equality = true
+strict_optional = true
+check_untyped_defs = true
+disallow_incomplete_defs = true
+ignore_missing_imports = false
+
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unreachable = true
+
+plugins = [
+    "mypy_django_plugin.main"
+]
+
+[tool.django-stubs]
+django_settings_module = "collectfast.tests.settings"
+
+[tool.coverage.run]
+branch = true
+source = [
+    "collectfast"
+]
+omit = []
+
+[tool.ruff]
+select = ["I"]
+line-length = 88
+ignore = ["I001"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 8
